@@ -1,0 +1,145 @@
+//1) 
+#include<stdio.h>
+
+int increase(int n);
+int space(int n);
+int decrease(int n);
+
+int main(){
+	int n;
+	scanf("%d",&n);
+	for(int i=n;i>=1;i--){
+		increase(i);
+		space(2*(n-i));
+		decrease(i);
+		printf("\n");
+	}
+	return 0;
+}
+
+int increase(int n){
+	for(int i=1;i<=n;i++){
+		printf("%d",i);
+	}
+}
+
+int space(int n){
+	for(int i=1;i<=n;i++){
+		printf(" ");
+	}
+}
+
+int decrease(int n){
+	for(int i =n;i>=1;i--){
+		printf("%d",i);
+	}
+}
+
+
+//2)
+#include <stdio.h>
+
+void printBits(unsigned int num);
+
+int main() {
+    unsigned int num;
+    scanf("%u", &num);
+    printf("Binary representation: ");
+    printBits(num);
+
+    return 0;
+}
+
+void printBits(unsigned int num) {
+    unsigned int mask = 1 << 31;
+
+    for (int i = 0; i < 32; i++) {
+        if (num & mask)
+            printf("1");
+        else
+            printf("0");
+        mask >>= 1;
+    }
+
+    printf("\n");
+}
+
+//3)
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int num;
+    printf("Enter a 4-digit number: ");
+    scanf("%d", &num);
+    num = abs(num);
+
+    int max= 0;
+
+    for (int i = 0; i < 4; i++) {
+        int temp = num / (int)pow(10, i + 1) * (int)pow(10, i) + num % (int)pow(10, i);
+
+        if (temp > max) {
+            max = temp;
+        }
+    }
+
+    printf("The largest number: %d\n", max);
+
+    return 0;
+}
+
+//4)
+#include<stdio.h>
+
+int largestandsmallest(int n);
+int lenofnum(int n);
+
+int main(){
+    int a;
+    scanf("%d",&a);
+    largestandsmallest(a);
+    return 0;
+}
+
+int largestandsmallest(int n){
+    int len = lenofnum(n);
+    int a[len];
+    for(int i=len-1;i>=0;--i){
+        a[i] = n%10;
+        n = n/10;
+    }
+    int lar = a[0], small = a[0];
+    for(int i=0;i<len;i++){
+        if(lar<a[i]){
+            lar = a[i];
+        }
+        if(small>a[i]){
+            small = a[i];
+        }
+    }
+    if(len==1){
+        printf("Not Valid");
+    }
+    else{
+        printf("%d and %d", small, lar);
+    }
+
+}
+
+int lenofnum(int n){
+    int len = 0;
+    if(n<10){
+        return 1;
+    }
+    if(n<0){
+        n = -n;
+    }
+    while (n>0){
+        len+=1;
+        n = n/10;
+    }
+    return len;
+    
+}
+
