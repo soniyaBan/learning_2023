@@ -1,0 +1,190 @@
+##arrays
+
+#problem1(sum and avg of elements)
+#include <stdio.h>
+
+void calculateSumAndAverage(int arr[], int size, int* sum, float* average) {
+    *sum = 0;
+    for (int i = 0; i < size; i++) {
+        *sum += arr[i];
+    }
+    *average = (float)(*sum) / size;
+}
+
+int main() {
+    int arr[] = {5, 10, 15, 20, 25};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int sum;
+    float average;
+
+    calculateSumAndAverage(arr, size, &sum, &average);
+
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    printf("Sum: %d\n", sum);
+    printf("Average: %.2f\n", average);
+
+    return 0;
+}
+
+
+
+
+
+
+#problem2(min and max elements in an array)
+#include <stdio.h>
+#include <limits.h>
+
+void findMinMax(int arr[], int size, int* min, int* max) {
+    *min = INT_MAX;
+    *max = INT_MIN;
+    
+    for (int i = 0; i < size; i++) {
+        if (arr[i] < *min) {
+            *min = arr[i];
+        }
+        if (arr[i] > *max) {
+            *max = arr[i];
+        }
+    }
+}
+
+int main() {
+    int arr[] = {5, 10, 15, 3, 20, 25};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    int min, max;
+    
+    findMinMax(arr, size, &min, &max);
+    
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    printf("Minimum: %d\n", min);
+    printf("Maximum: %d\n", max);
+    
+    return 0;
+}
+
+
+
+
+
+#problem3(diff b/w even and odd elements)
+#include <stdio.h>
+
+int calculateDifference(int arr[], int size) {
+    int sumOdd = 0;
+    int sumEven = 0;
+    
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % 2 == 0) {
+            sumEven += arr[i];
+        } else {
+            sumOdd += arr[i];
+        }
+    }
+    
+    int difference = sumEven - sumOdd;
+    return difference;
+}
+
+int main() {
+    int arr[] = {5, 10, 15, 20, 25};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    int difference = calculateDifference(arr, size);
+    
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    printf("Difference: %d\n", difference);
+    
+    return 0;
+}
+
+
+#problem 4(diff b/w even and odd indexed elements)
+#include <stdio.h>
+
+int calculateDifference(int arr[], int size) {
+    int sumEvenIndex = 0;
+    int sumOddIndex = 0;
+    
+    for (int i = 0; i < size; i++) {
+        if (i % 2 == 0) {
+            sumEvenIndex += arr[i];
+        } else {
+            sumOddIndex += arr[i];
+        }
+    }
+    
+    int difference = sumEvenIndex - sumOddIndex;
+    return difference;
+}
+
+int main() {
+    int arr[] = {5, 10, 15, 20, 25};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    int difference = calculateDifference(arr, size);
+    
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    printf("Difference: %d\n", difference);
+    
+    return 0;
+}
+
+
+#problem5(reverse array)
+#include <stdio.h>
+
+void reverseArray(int arr[], int size) {
+    int start = 0;
+    int end = size - 1;
+    
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("Original array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    reverseArray(arr, size);
+    
+    printf("\nReversed array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}

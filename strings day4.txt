@@ -1,0 +1,96 @@
+##strings
+
+#problem1(toggle case)
+#include <stdio.h>
+#include <ctype.h>
+
+void toggleString(char* str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (isupper(str[i])) {
+            str[i] = tolower(str[i]);
+        } else if (islower(str[i])) {
+            str[i] = toupper(str[i]);
+        }
+    }
+}
+
+int main() {
+    char str[] = "Hello World!";
+    
+    printf("Original string: %s\n", str);
+    
+    toggleString(str);
+    
+    printf("Toggled string: %s\n", str);
+    
+    return 0;
+}
+
+
+
+
+#problem2(covert string as integer)
+#include <stdio.h>
+
+int stringToInt(const char* str) {
+    int result = 0;
+    int sign = 1;
+    int i = 0;
+    
+    // Check if the number is negative
+    if (str[0] == '-') {
+        sign = -1;
+        i = 1;
+    }
+    
+    // Iterate through each character of the string
+    while (str[i] != '\0') {
+        // Convert character to digit
+        int digit = str[i] - '0';
+        
+        // Update the result by multiplying it by 10 and adding the current digit
+        result = result * 10 + digit;
+        
+        i++;
+    }
+    
+    // Apply the sign to the result
+    result = result * sign;
+    
+    return result;
+}
+
+int main() {
+    const char str[] = "-12345";
+    int num = stringToInt(str);
+    
+    printf("String: %s\n", str);
+    printf("Integer: %d\n", num);
+    
+    return 0;
+}
+
+
+#problem3(total noofsecs)
+#include <stdio.h>
+
+int calculateTotalSeconds(const char* timeString) {
+    int hours, minutes, seconds;
+    
+    sscanf(timeString, "%d:%d:%d", &hours, &minutes, &seconds);
+    
+    int totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    
+    return totalSeconds;
+}
+
+int main() {
+    const char timeString[] = "12:30:45";
+    
+    int totalSeconds = calculateTotalSeconds(timeString);
+    
+    printf("Time: %s\n", timeString);
+    printf("Total seconds: %d\n", totalSeconds);
+    
+    return 0;
+}
