@@ -1,0 +1,215 @@
+//1) #include<stdio.h>
+
+struct box{
+    float l;
+    float b;
+    float h;
+};
+
+typedef struct box box;
+
+void values(box*, float, float, float);
+float disp(box*);
+
+int main(){
+    box b1;
+    box* ptr = &b1;
+    values(ptr,4,4,4);
+    disp(ptr);
+    return 0;
+}
+
+
+void values(box* ptr, float len, float breadth, float height){
+    ptr->l = len;
+    ptr->b = breadth;
+    ptr->h = height;
+}
+
+float disp(box* ptr){
+    float volume = ptr->l*ptr->b*ptr->h;
+    float TSA = 2*((ptr->l*ptr->b)+(ptr->b*ptr->h)+(ptr->l*ptr->h));
+    printf("volume: %.2f\t,TSA: %.2f\n",volume, TSA);
+}
+
+//2 #include <stdio.h>
+
+typedef struct {
+    double real;
+    double imaginary;
+}Complex;
+
+Complex read() {
+    Complex c;
+
+    printf("Enter the real part: ");
+    scanf("%lf", &c.real);
+
+    printf("Enter the imaginary part: ");
+    scanf("%lf", &c.imaginary);
+
+    return c;
+}
+
+void write(Complex c) {
+    printf("Complex number: %.2lf + %.2lfi\n", c.real, c.imaginary);
+}
+
+Complex add(Complex c1, Complex c2) {
+    Complex sum;
+
+    sum.real = c1.real + c2.real;
+    sum.imaginary = c1.imaginary + c2.imaginary;
+
+    return sum;
+}
+
+Complex mul(Complex c1, Complex c2) {
+    Complex product;
+
+    product.real = (c1.real * c2.real) - (c1.imaginary * c2.imaginary);
+    product.imaginary = (c1.real * c2.imaginary) + (c1.imaginary * c2.real);
+
+    return product;
+}
+
+int main() {
+    Complex c1, c2, sum, product;
+
+    printf("First complex number:\n");
+    c1 = read();
+
+    printf("Second complex number:\n");
+    c2 = read();
+
+    printf("\n");
+
+    printf("First complex number:\n");
+    write(c1);
+
+    printf("Second complex number:\n");
+    write(c2);
+
+    printf("\n");
+
+    sum = add(c1, c2);
+    printf("Sum:\n");
+    write(sum);
+
+    product = mul(c1, c2);
+    printf("Product:\n");
+    write(product);
+
+    return 0;
+}
+
+//3) #include <stdio.h>
+
+// Structure to represent a time period
+typedef struct {
+    int hours;
+    int minutes;
+    int seconds;
+} TimePeriod;
+
+TimePeriod cal(TimePeriod t1, TimePeriod t2) {
+    TimePeriod d;
+
+    int t1_secs = t1.hours * 3600 + t1.minutes * 60 + t1.seconds;
+    int t2_secs = t2.hours * 3600 + t2.minutes * 60 + t2.seconds;
+
+    int d_secs = t1_secs > t2_secs ? t1_secs - t2_secs : t2_secs - t1_secs;
+
+    d.hours = d_secs / 3600;
+    d_secs %= 3600;
+    d.minutes = d_secs / 60;
+    d.seconds = d_secs % 60;
+
+    return d;
+}
+
+int main() {
+    TimePeriod t1, t2, d;
+
+    printf("First time period: ");
+    scanf("%d %d %d", &t1.hours, &t1.minutes, &t1.seconds);
+    printf("Second time period: ");
+    scanf("%d %d %d", &t2.hours, &t2.minutes, &t2.seconds);
+    d = cal(t1, t2);
+    printf("\n");
+    printf("Time difference: %d:%d:%d\n", d.hours, d.minutes, d.seconds);
+
+    return 0;
+}
+
+
+//4) #include<stdio.h>
+#include<stdlib.h>
+
+struct data{
+    int id;
+    char name[20];
+    int age;
+};
+
+typedef struct data data;
+
+int main(){
+    int n;
+    data* d;
+    scanf("%d",&n);
+    d = (data*)malloc(n*sizeof(data));
+    printf("Scanning\n");
+    for(int i=0;i<n;i++){
+        scanf("%d",&d[i].id);
+        scanf("%s",d[i].name);
+        scanf("%d",&d[i].age);
+    }
+    printf("Displaying\n");
+    for(int i=0;i<n;i++){
+        printf("%d\t",d[i].id);
+        printf("%s\t",d[i].name);
+        printf("%d\t",d[i].age);
+        printf("\n");
+    }
+    free(d);
+}
+
+
+//5) #include<stdio.h>
+
+struct data
+{
+    int id;
+    int age;
+};
+typedef struct data data;
+
+void val(data*, int, int);
+void disp(data*);
+void swap(data*, data*);
+
+int main(){
+    data d1,d2;
+    val(&d1,15168,21);
+    val(&d2,15229,20);
+    swap(&d1,&d2);
+    disp(&d1);
+    disp(&d2);
+}
+
+void val(data* ptr,int no, int num){
+    ptr->id = no;
+    ptr->age = num;
+}
+
+void disp(data* ptr){
+    printf("id: %d\t age: %d\n",ptr->id,ptr->age);
+}
+
+
+void swap(data* d1, data* d2){
+    data temp = *d1;
+    *d1 = *d2;
+    *d2 = temp;
+}
